@@ -26,10 +26,13 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        String path = request.getServletPath();
+        String path = request.getRequestURI();
 
-        if (path.startsWith("/v3/api-docs") ||
-                path.startsWith("/swagger-ui")) {
+        if (path.contains("/swagger-ui") ||
+                path.contains("/v3/api-docs") ||
+                path.contains("/swagger-resources") ||
+                path.contains("/webjars")) {
+
             chain.doFilter(request, response);
             return;
         }

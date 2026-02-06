@@ -38,7 +38,9 @@ public class SpringSecurity {
                                 "/api/search/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html"
+                                "/swagger-ui.html",
+                                "/webjars/**",
+                                "/swagger-resources/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
