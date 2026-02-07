@@ -368,56 +368,6 @@ The application supports environment variable overrides:
 - `jwt.secret`: Secret key for signing tokens (minimum 32 characters recommended)
 - `jwt.expiration`: Token expiration time in milliseconds
 
-## 🐳 Docker Support
-
-The project includes a `Dockerfile` for containerized deployment:
-
-### Build Docker Image
-
-```bash
-docker build -t course-platform .
-```
-
-### Run Container
-
-```bash
-docker run -p 8080:8080 \
-  -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/course \
-  -e SPRING_DATASOURCE_USERNAME=postgres \
-  -e SPRING_DATASOURCE_PASSWORD=password \
-  course-platform
-```
-
-### Docker Compose (Example)
-
-Create a `docker-compose.yml` for full stack deployment:
-
-```yaml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/course
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=password
-    depends_on:
-      - db
-  
-  db:
-    image: postgres:15
-    environment:
-      - POSTGRES_DB=course
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-```
 
 ## 📝 API Usage Examples
 
@@ -523,28 +473,4 @@ CoursePlatform/
 5. **DTO Pattern**: Separation of API contracts from entities
 6. **Global Exception Handling**: Consistent error responses
 7. **CommandLineRunner for Seeding**: Automatic data initialization
-
-## 🚧 Future Enhancements
-
-Potential improvements:
-- User roles and permissions (admin, instructor, student)
-- Course ratings and reviews
-- Discussion forums or comments
-- Email notifications
-- Course recommendations
-- Analytics and reporting
-- File uploads for course materials
-- Video content integration
-
-## 📄 License
-
-This project is part of a course platform system.
-
-## 👥 Contributing
-
-This is a project implementation. For questions or issues, please refer to the project documentation.
-
----
-
-**Built with Spring Boot 3.2.5 and Java 17**
 
